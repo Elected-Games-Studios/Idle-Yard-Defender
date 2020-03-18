@@ -1,21 +1,22 @@
 ﻿using System;
 using UnityEngine;
-public class NormalZombieHealth : ZombieHealth
+public class NormalZombieValues : ZombieValues
 {
-    [SerializeField]
-    protected GameObject _coinPrefab;
-    public int maxHealth { get; set; }
-    protected int currentHealth;
-    protected NormalZombieMovement movement;
-    private Animator animator;
-    protected void Awake()
+    //contains health, cash value, 
+    NormalZombieMovement movement;
+    Animator animator;
+    YardUIManager yardUIManager;
+    public override void Awake()
     {
-        //GetComponent<Audios>();
-        //GetComponent<Particles>();
-        maxHealth = 20;
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+        yardUIManager = GetComponent<YardUIManager>();
+        //GetComponent<Audios>();
+        //GetComponent<Particles>();
+        MaxHealth = 20;
+        currentHealth = MaxHealth;
+        zombieLevel = 1;
+        zombieValue = 10;
     }
     public override void TakeDamage(int damage)
     {
@@ -28,16 +29,15 @@ public class NormalZombieHealth : ZombieHealth
         //play Audios.HurtAudio
         //maybe trigger animator zombie hurt anim
         }
-
     }
-
-    private void HandleZombieDeath()
+        private void HandleZombieDeath()
     {
         //play death sound
         //tell score and cash
         movement.moveSpeed = 0f;
         animator.SetTrigger("isDead");
-        Instantiate(_coinPrefab, transform);
+        yardUIManager.AddCash(zombieValue);
+        Instantiate(_coinPrefab, transform.position, transform.rotation);
         Destroy(gameObject, 1);
     }
 }

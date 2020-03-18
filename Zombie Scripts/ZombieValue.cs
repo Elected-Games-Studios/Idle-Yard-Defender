@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-public abstract class ZombieValue : MonoBehaviour
+public class ZombieValue : MonoBehaviour
 {
-    protected int zombieValue;
-    protected int zombieLevel;
+    public int cashValue { get => cashValue; private set => cashValue = 10; } //cash value could set with a method call here
 }

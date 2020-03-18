@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class FastZombieHealth : ZombieHealth
+public class FastZombieHealth : ZombieValues
 {
     [SerializeField]
     protected GameObject _coinPrefab;

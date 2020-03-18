@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class NormalZombie : MonoBehaviour
 {
-    private int zombieValue;
-    private int zombieLevel;
-
-    void Awake() //get, set lvl and value
-    {
-        zombieValue = 50;
-        zombieLevel = 1;
-        //house lvl * yardprestigue * Multi's
-    }
-    //public void PayOnDeath(int zombieValue)
-    //{
-    //    zombieValue = zombieValue();
-    //    //on death pass a message of value to player cash
-    //}
+    public int zombieLevel { get => zombieLevel; private set => zombieLevel = 1; }
+    public int zombieValue { get => zombieValue; private set => zombieValue = 10; } //cash value could set with a method call here
 }
