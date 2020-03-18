@@ -21,6 +21,9 @@ public class MiniGun : Turret
         //GetComponent<IHaveStats>();
         //get ROF based on level
         //get STR based onlevel
+        
+        
+        //turretPos = gameObject.name;
     }
     public void Update() // SHOOT Weapon check based on a descending timer attached to update loop
     {

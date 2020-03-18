@@ -3,10 +3,10 @@ using UnityEngine;
 public class ZombieSpawn : MonoBehaviour
 {
     [SerializeField]
-    protected List<GameObject> spawnList;
+    private List<GameObject> zombieSpawnList;
     [SerializeField]
-    protected float zombieSpawnTimer;
-    protected void Awake()
+    private float zombieSpawnTimer;
+    private void Awake()
     {
         zombieSpawnTimer = 2f;
     }
@@ -21,6 +21,6 @@ public class ZombieSpawn : MonoBehaviour
     private void SpawnZombie()
     {
         zombieSpawnTimer = 2f;
-        Instantiate(spawnList[Random.Range(0, spawnList.Count)], transform);
+        Instantiate(zombieSpawnList[Random.Range(0, zombieSpawnList.Count)], transform);
     }
 }
