@@ -10,7 +10,6 @@ public class NormalZombieValues : ZombieValues
     {
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
-        yardUIManager = GetComponent<YardUIManager>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
         MaxHealth = 20;
@@ -36,7 +35,7 @@ public class NormalZombieValues : ZombieValues
         //tell score and cash
         movement.moveSpeed = 0f;
         animator.SetTrigger("isDead");
-        yardUIManager.AddCash(zombieValue);
+        yardUIManager.instance.AddCash(zombieValue);
         Instantiate(_coinPrefab, transform.position, transform.rotation);
         Destroy(gameObject, 1);
     }
