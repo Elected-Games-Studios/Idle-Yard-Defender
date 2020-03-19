@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DataTables"
   ],
+  "SelectedNode": "\\DataTables\\DataBaseManager.cs",
   "PreviewInSolutionExplorer": false
 }

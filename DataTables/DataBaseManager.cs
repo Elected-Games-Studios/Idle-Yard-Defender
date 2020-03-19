@@ -23,6 +23,7 @@ class DataBaseTurrets
     public static int howManyYards;
     public static List<int> YardPrestigeList;
 
+    //can you read this\
 
     /*public static myStats GetMyTurret(int location,int yard)
     {
