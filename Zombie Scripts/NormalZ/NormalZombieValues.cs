@@ -5,8 +5,7 @@ public class NormalZombieValues : ZombieValues
     //contains health, cash value, 
     NormalZombieMovement movement;
     Animator animator;
-    YardUIManager yardUIManager;
-    public override void Awake()
+      public override void Awake()
     {
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
@@ -31,12 +30,13 @@ public class NormalZombieValues : ZombieValues
     }
         private void HandleZombieDeath()
     {
+        Vector3 newSpawnPos = transform.position + new Vector3(0, 1, 0);
         //play death sound
         //tell score and cash
         movement.moveSpeed = 0f;
         animator.SetTrigger("isDead");
-        yardUIManager.instance.AddCash(zombieValue);
-        Instantiate(_coinPrefab, transform.position, transform.rotation);
+        YardUIManager.instance.AddCash(zombieValue);
+        Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
         Destroy(gameObject, 1);
     }
 }
