@@ -5,7 +5,9 @@ public class NormalZombieValues : ZombieValues
     //contains health, cash value, 
     NormalZombieMovement movement;
     Animator animator;
-      public override void Awake()
+    public bool isDead = false;
+
+    public override void Awake()
     {
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
@@ -18,7 +20,7 @@ public class NormalZombieValues : ZombieValues
     }
     public override void TakeDamage(int damage)
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
             HandleZombieDeath();
         else
         {
@@ -31,6 +33,7 @@ public class NormalZombieValues : ZombieValues
         private void HandleZombieDeath()
     {
         Vector3 newSpawnPos = transform.position + new Vector3(0, 1, 0);
+        isDead = true;
         //play death sound
         //tell score and cash
         movement.moveSpeed = 0f;
