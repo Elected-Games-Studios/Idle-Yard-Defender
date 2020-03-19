@@ -18,7 +18,8 @@ class DataBaseTurrets
         {1,16,32,64,128,256,512};
     private static List<int> YardPrestigeDifferentialList = new List<int>
         {30,60,120,240,480,960,1920,3840,7680,15360};
-    public static int[,] buffs = new int[6, 3] { { 1, 1, 1 }, { -1, 2, 1 }, { -1, 3, 1 }, { -1, 4, 1 }, { -1, 8, 1 }, { -1, 16, 1 } };
+    public static int[,] buffs = new int[6, 3] 
+    { { 1, 1, 1 }, { -1, 2, 1 }, { -1, 3, 1 }, { -1, 4, 1 }, { -1, 8, 1 }, { -1, 16, 1 } };
     public static int howManyYards;
     public static List<int> YardPrestigeList;
 
