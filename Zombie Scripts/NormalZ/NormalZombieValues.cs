@@ -7,7 +7,7 @@ public class NormalZombieValues : ZombieValues
     Animator animator;
     public bool isDead = false;
 
-    public override void Awake()
+    public void Awake()
     {
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
