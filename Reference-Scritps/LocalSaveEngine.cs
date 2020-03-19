@@ -9,13 +9,9 @@ public static class LocalSaveEngine
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/playerData.stats";
         FileStream stream = new FileStream(path, FileMode.Create);
-        Debug.Log("SavePlayer Filestream Opened");
         SavedVariables data = new SavedVariables(player);
-        Debug.Log("Variable data created");
         formatter.Serialize(stream, data);
-        Debug.Log("formatted stream");
         stream.Close();
-        Debug.Log("SavePlayer Filestream Closed");
     }
 
     public static SavedVariables LoadPlayer()
