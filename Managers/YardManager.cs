@@ -6,7 +6,6 @@ public class YardManager : MonoBehaviour
 {
     public static YardManager instance;
     public static int ActiveYard { get; private set; } // maybe don't need this.. 
-
     public void Awake()
     {
         if(instance == null)
@@ -17,9 +16,6 @@ public class YardManager : MonoBehaviour
         {
             Destroy(this);
         }
-        DataBaseTurrets.Starter();
-
-
+        DataBaseManager.Starter();
     }
-
 }

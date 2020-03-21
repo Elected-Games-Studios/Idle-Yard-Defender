@@ -10,32 +10,22 @@ public class MiniGun : Turret
     [SerializeField]
     MinigunShotPool minigunShotPool;
     protected float timeToShoot;
-    private string Location
+    public string Location { get; set; }
+    public string Yard { get; set; }
+    public void Awake()
     {
-        get => Location;
-        set
-        {
-            Location = gameObject.name;
-        }
-    }
-    private string Yard
-    {
-        get => Yard;
-        set
-        {
-            Yard = SceneManager.GetActiveScene().name;
-        }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
+        Location = gameObject.name;
+        Yard = SceneManager.GetActiveScene().name;
+        int intYard = Convert.ToInt32(Yard);
+        int intLocation = Convert.ToInt32(Location);
         targetingComputer = GetComponent<TargetingComputer>();
-        List<Int64> tempArr = DataBaseTurrets.TurretStats(Yard, Location);
-        LVL = Convert.ToInt64(tempArr[0]);
-        ROF = Convert.ToInt64(tempArr[1]);
-        STR = Convert.ToInt64(tempArr[2]);
-        CTU = Convert.ToInt64(tempArr[3]);
+        List<Int64> tempArr = DataBaseManager.TurretStats(intYard, intLocation);
+
+        LVL = (tempArr[0]);
+        ROF = (tempArr[1]);
+        STR = (tempArr[2]);
+        CTU = (tempArr[3]);
+
     }
     public void Update() // SHOOT Weapon check based on a descending timer attached to update loop
     {
