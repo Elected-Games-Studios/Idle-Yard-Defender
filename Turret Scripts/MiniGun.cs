@@ -1,29 +1,46 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
 public class MiniGun : Turret
 {
     TargetingComputer targetingComputer;
     [SerializeField]
     MinigunShotPool minigunShotPool;
     protected float timeToShoot;
-    public int STR { get; set; }
+    public int intLocation;
+    private string Location
+    {
+        get => Location;
+        set
+        {
+            Location = gameObject.name;
+            intLocation = Convert.ToInt32(Location);
+        }
+    }
+    public int intYard;
+    private string Yard
+    {
+        get => Yard;
+        set
+        {
+            Yard = SceneManager.GetActiveScene().name;
+            intYard = Convert.ToInt32(Yard);
+        }
+    }
 
     protected override void Awake()
     {
         base.Awake();
         STR = 5;
         targetingComputer = GetComponent<TargetingComputer>();
-        //List<Int64> tempArr = DataBaseTurrets.TurretStats(1, 2);
-        //LVL = Convert.ToInt32(tempArr[0]);//LVL
-        //ROF = Convert.ToInt32(tempArr[1]);//ROF
-        //STR = Convert.ToInt32(tempArr[2]);//STR
-        //CTU = Convert.ToInt32(tempArr[3]);//CTU
-        //levelHandler is run to get lvl, str, rof, ctu
-        //GetComponent<IHaveStats>();
-        //get ROF based on level
-        //get STR based onlevel
-        
-        
-        //turretPos = gameObject.name;
+        List<Int64> tempArr = DataBaseTurrets.TurretStats(intYard, intLocation);
+        LVL = Convert.ToInt64(tempArr[0]);
+        ROF = Convert.ToInt64(tempArr[1]);
+        STR = Convert.ToInt64(tempArr[2]);
+        CTU = Convert.ToInt64(tempArr[3]);
     }
     public void Update() // SHOOT Weapon check based on a descending timer attached to update loop
     {
@@ -51,5 +68,4 @@ public class MiniGun : Turret
         bullet.GetComponent<ParticleControll>().PassTarget(targetingComputer.Target);
         bullet.GetComponent<ParticleControll>().passdamage(STR);
     }
-
 }

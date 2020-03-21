@@ -2,7 +2,7 @@
 public class ParticleControll : MonoBehaviour
 {
 	public float speed;
-	protected int damage;
+	protected long damage;
 	public float lifetime;
 	AttackProcessor attackProcessor;
 	public GameObject particleTarget;
@@ -59,5 +59,5 @@ public class ParticleControll : MonoBehaviour
 		Destroy(muzzleVFX, 1);
 	}
 	public void PassTarget(GameObject target) => particleTarget = target;
-	public void passdamage(int STR) => damage = STR;
+	public void passdamage(long STR) => damage = STR;
 }

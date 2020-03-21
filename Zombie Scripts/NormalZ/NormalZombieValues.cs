@@ -18,7 +18,7 @@ public class NormalZombieValues : ZombieValues
         zombieLevel = 1;
         zombieValue = 10;
     }
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(long damage)
     {
         if (currentHealth <= 0 && !isDead)
             HandleZombieDeath();

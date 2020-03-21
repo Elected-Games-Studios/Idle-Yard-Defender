@@ -7,10 +7,10 @@ public abstract class Turret : MonoBehaviour//, IHaveStats
     protected Transform rotateBody;
     [SerializeField]
     protected Transform shootPoint;
-    protected float rateOfFire;
-    protected int _turretLevel = 1;
-    protected float _costToUpgrade;
-    private int _ctu;
+    public long STR { get; set; }
+    public long LVL { get; set; }    
+    public long ROF { get; set; }
+    public long CTU { get; set; }
     //public int STR { get; set; } //strength or dmg amount
     //public int ROF { get; set; } //rate of fire
     //public int LVL { get; set; } //level 

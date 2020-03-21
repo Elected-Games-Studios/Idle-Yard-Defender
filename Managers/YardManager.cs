@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class YardManager : MonoBehaviour
 {
     public static YardManager instance;
-    public static int ActiveYard { get; private set; }
+    public static int ActiveYard { get; private set; } // maybe don't need this.. 
 
     public void Awake()
     {
@@ -17,6 +17,7 @@ public class YardManager : MonoBehaviour
         {
             Destroy(this);
         }
+        DataBaseTurrets.Starter();
 
 
     }

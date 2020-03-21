@@ -2,9 +2,7 @@
 public class FastZombieHealth : ZombieValues
 {
     [SerializeField]
-    protected GameObject _coinPrefab;
     protected int maxHealth = 6;
-    protected int currentHealth;
     protected FastZombieMovement movement;
     private Animator animator;
     protected void Awake()
@@ -16,7 +14,7 @@ public class FastZombieHealth : ZombieValues
         currentHealth = maxHealth;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(long damage)
     {
         if (currentHealth <= 0)
             HandleZombieDeath();

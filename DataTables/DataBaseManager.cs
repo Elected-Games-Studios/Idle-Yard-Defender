@@ -112,7 +112,7 @@ class DataBaseTurrets
             }
         }
     }
-    public static List<Int64> TurretStats(int yard, int location)//sends a list of the current turrets stats, Assign turret loc in monob turret script
+    public static List<Int64> TurretStats(int yard, int location)
     {
         Int64[,] currentyard = yards[yard];
         List<Int64> templist = new List<Int64>();
