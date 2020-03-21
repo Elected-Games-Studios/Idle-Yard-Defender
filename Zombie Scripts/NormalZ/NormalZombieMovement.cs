@@ -3,6 +3,6 @@
     protected override void Awake()
     {
         base.Awake();
-        moveSpeed = 3f;
+        moveSpeed = 2f;
     }
 }

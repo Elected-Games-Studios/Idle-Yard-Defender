@@ -4,6 +4,7 @@ public abstract class ZombieValues : MonoBehaviour
 
 {
     //get zombie health values and do zombie dmg based on
+    public bool isDead = false;
     [SerializeField]
     protected GameObject _coinPrefab;
     public long MaxHealth { get; set; }

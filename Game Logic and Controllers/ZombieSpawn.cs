@@ -5,25 +5,17 @@ public class ZombieSpawn : MonoBehaviour
     [SerializeField]
     private List<GameObject> zombieSpawnList;
     [SerializeField]
-    public float zombieSpawnTimer { get; set; }
-    public void Awake()
-    {
-        zombieSpawnTimer = 1f;
-    }
+    public float zombieSpawnTimer = 2f;
     void Update()
     {
         zombieSpawnTimer -= Time.deltaTime;
         if (zombieSpawnTimer <= 0)
         {
+            zombieSpawnTimer = 2f;
             SpawnZombie();
         }
     }
     private void SpawnZombie()
-    {
-        zombieSpawnTimer = 1f;
-        DiceRoll();
-    }
-    private void DiceRoll()
     {
         Vector3 newSpawnPos = transform.position + new Vector3(Random.Range(-5, 5), 0, 0);
         int x = Random.Range(0, 90);

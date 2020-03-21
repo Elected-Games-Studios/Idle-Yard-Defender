@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 public abstract class ZombieMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    [SerializeField]
+    public float moveSpeed { get; set; }
     protected bool isAttacking = false;
     protected Animator _animator;
     protected virtual void Awake()

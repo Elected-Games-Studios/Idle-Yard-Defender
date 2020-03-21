@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
-public class FastZombieHealth : ZombieValues
+public class FastZombieValues: ZombieValues
 {
-    [SerializeField]
-    protected int maxHealth = 6;
     protected FastZombieMovement movement;
     private Animator animator;
-    protected void Awake()
+    public void Awake()
     {
-        //GetComponent<Audios>();
-        //GetComponent<Particles>();
         movement = GetComponent<FastZombieMovement>();
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+        //GetComponent<Audios>();
+        //GetComponent<Particles>();
+        MaxHealth = 5;
+        currentHealth = MaxHealth;
+        zombieLevel = 1;
+        zombieValue = 20;
     }
-
     public override void TakeDamage(long damage)
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
             HandleZombieDeath();
         else
         {
@@ -25,15 +25,17 @@ public class FastZombieHealth : ZombieValues
             //play Audios.HurtAudio
             //maybe trigger animator zombie hurt anim
         }
-
     }
     private void HandleZombieDeath()
     {
+        Vector3 newSpawnPos = transform.position + new Vector3(0, 1, 0);
+        isDead = true;
         //play death sound
         //tell score and cash
         movement.moveSpeed = 0f;
         animator.SetTrigger("isDead");
-        Instantiate(_coinPrefab, transform);
-        Destroy(gameObject, 2f);
+        YardUIManager.instance.AddCash(zombieValue);
+        Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
+        Destroy(gameObject, 1);
     }
 }

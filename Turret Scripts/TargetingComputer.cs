@@ -5,12 +5,19 @@ public class TargetingComputer : MonoBehaviour
     public GameObject Target { get;  private set; }
     private Queue<GameObject> _enemyQueue = new Queue<GameObject>();
     public bool targetAquired = false;
+    public bool targetIsDead = false;
 
     public void Update()
     {
         if (Target != null)
         {
             targetAquired = true;
+            targetIsDead = Target.GetComponent<ZombieValues>().isDead;
+        }
+        if (targetIsDead == true)
+        {
+            targetAquired = false;
+            MaintainQueue();
         }
         else
         {
@@ -20,6 +27,10 @@ public class TargetingComputer : MonoBehaviour
     }
     private void MaintainQueue()
     {
+        if (Target != null && _enemyQueue.Count != 0)
+        {
+            targetAquired = (true);
+        }
         while (Target == null && _enemyQueue.Count != 0)
         {
             _enemyQueue.Dequeue();
@@ -28,10 +39,7 @@ public class TargetingComputer : MonoBehaviour
                 Target = _enemyQueue.Peek();
             }
         }
-        if(Target != null && _enemyQueue.Count != 0)
-        {
-            targetAquired = (true);
-        }
+
     }
     public void OnTriggerEnter(Collider co)
     {

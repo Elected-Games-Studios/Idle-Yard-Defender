@@ -2,18 +2,15 @@
 using UnityEngine;
 public class NormalZombieValues : ZombieValues
 {
-    //contains health, cash value, 
     NormalZombieMovement movement;
     Animator animator;
-    public bool isDead = false;
-
     public void Awake()
     {
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
-        MaxHealth = 20;
+        MaxHealth = 10;
         currentHealth = MaxHealth;
         zombieLevel = 1;
         zombieValue = 10;
