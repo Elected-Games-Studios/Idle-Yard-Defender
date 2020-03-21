@@ -10,33 +10,28 @@ public class MiniGun : Turret
     [SerializeField]
     MinigunShotPool minigunShotPool;
     protected float timeToShoot;
-    public int intLocation;
     private string Location
     {
         get => Location;
         set
         {
             Location = gameObject.name;
-            intLocation = Convert.ToInt32(Location);
         }
     }
-    public int intYard;
     private string Yard
     {
         get => Yard;
         set
         {
             Yard = SceneManager.GetActiveScene().name;
-            intYard = Convert.ToInt32(Yard);
         }
     }
 
     protected override void Awake()
     {
         base.Awake();
-        STR = 5;
         targetingComputer = GetComponent<TargetingComputer>();
-        List<Int64> tempArr = DataBaseTurrets.TurretStats(intYard, intLocation);
+        List<Int64> tempArr = DataBaseTurrets.TurretStats(Yard, Location);
         LVL = Convert.ToInt64(tempArr[0]);
         ROF = Convert.ToInt64(tempArr[1]);
         STR = Convert.ToInt64(tempArr[2]);
