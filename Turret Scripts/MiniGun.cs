@@ -9,7 +9,7 @@ public class MiniGun : Turret
     TargetingComputer targetingComputer;
     [SerializeField]
     MinigunShotPool minigunShotPool;
-    protected float timeToShoot;
+    protected float timeToShoot = .2f;
     public string Location { get; set; }
     public string Yard { get; set; }
     public void Awake()
@@ -19,13 +19,13 @@ public class MiniGun : Turret
         int intYard = Convert.ToInt32(Yard);
         int intLocation = Convert.ToInt32(Location);
         targetingComputer = GetComponent<TargetingComputer>();
+        
         List<Int64> tempArr = DataBaseManager.TurretStats(intYard, intLocation);
 
         LVL = (tempArr[0]);
         ROF = (tempArr[1]);
         STR = (tempArr[2]);
         CTU = (tempArr[3]);
-
     }
     public void Update() // SHOOT Weapon check based on a descending timer attached to update loop
     {
@@ -35,15 +35,15 @@ public class MiniGun : Turret
     }
     void FixedUpdate() //Rotate body at target
     {
-        if (targetingComputer.targetAquired == true && targetingComputer.Target != null)
+        if (targetingComputer.Target != null)
         {
             rotateBody.LookAt(targetingComputer.Target.transform);
         }
     }
-    protected void ShootWeapon() // really should be an event with delegates? not sure.. there are really no dependancies here.. idk
+    protected void ShootWeapon()
     {
         //reset shoot timer, grab bullet frm pool, set pos&rot to shootpoint pos&rot, set particle lifetime, enable bullet, instnt mzlfx, passtarget, passdmg
-        timeToShoot = 1;
+        timeToShoot = .2f;
         var bullet = minigunShotPool.Get();
         bullet.transform.position = shootPoint.transform.position;
         bullet.transform.rotation = shootPoint.transform.rotation;
