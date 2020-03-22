@@ -39,7 +39,7 @@ public class MiniGun : Turret
     }
     void FixedUpdate() //Rotate body at target
     {
-        if (targetingComputer.Target != null)
+        if (targetingComputer.targetAquired && targetingComputer.Target != null)
         {
             rotateBody.LookAt(targetingComputer.Target.transform);
         }

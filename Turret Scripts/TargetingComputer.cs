@@ -2,22 +2,30 @@
 using UnityEngine;
 public class TargetingComputer : MonoBehaviour
 {
-    public GameObject Target { get;  private set; }
+    public GameObject Target { get; private set; }
     private Queue<GameObject> _enemyQueue = new Queue<GameObject>();
     public bool targetAquired = false;
-    public bool targetIsDead = false;
 
     public void Update()
     {
         if (Target != null)
         {
-            targetAquired = true;
-            targetIsDead = Target.GetComponent<ZombieValues>().isDead;
-        }
-        if (targetIsDead == true)
-        {
-            targetAquired = false;
-            MaintainQueue();
+            if (Target.GetComponent<ZombieValues>().isDead)
+            {
+                _enemyQueue.Dequeue();
+                if (_enemyQueue.Count != 0)
+                {
+                    Target = _enemyQueue.Peek();
+                }
+                else
+                {
+                    Target = null;
+                }
+            }
+            else
+            {
+                targetAquired = true;
+            }
         }
         else
         {
@@ -27,19 +35,18 @@ public class TargetingComputer : MonoBehaviour
     }
     private void MaintainQueue()
     {
-        if (Target != null && _enemyQueue.Count != 0)
-        {
-            targetAquired = (true);
-        }
         while (Target == null && _enemyQueue.Count != 0)
         {
             _enemyQueue.Dequeue();
             if (_enemyQueue.Count != 0)
             {
                 Target = _enemyQueue.Peek();
+                if (!Target.GetComponent<ZombieValues>().isDead)
+                {
+                    targetAquired = true;
+                }
             }
         }
-
     }
     public void OnTriggerEnter(Collider co)
     {
@@ -47,7 +54,7 @@ public class TargetingComputer : MonoBehaviour
         if (co.CompareTag("Enemy") && !_enemyQueue.Contains(co.gameObject))
         {
             _enemyQueue.Enqueue(co.gameObject);
-            if(Target == null)
+            if (Target == null && _enemyQueue.Count != 0)
             {
                 Target = _enemyQueue.Peek();
             }
@@ -58,9 +65,13 @@ public class TargetingComputer : MonoBehaviour
         if (co.CompareTag("Enemy") && _enemyQueue.Contains(co.gameObject))
         {
             _enemyQueue.Dequeue();
-            if (_enemyQueue.Count!=0)
+            if (_enemyQueue.Count != 0) 
             {
-                Target = _enemyQueue.Peek();
+                Target = _enemyQueue.Peek(); 
+            }
+            else
+            {
+                Target = null;
             }
         }
     }

@@ -5,13 +5,13 @@ public class ZombieSpawn : MonoBehaviour
     [SerializeField]
     private List<GameObject> zombieSpawnList;
     [SerializeField]
-    public float zombieSpawnTimer = 2f;
+    public float zombieSpawnTimer = 1.5f;
     void Update()
     {
         zombieSpawnTimer -= Time.deltaTime;
         if (zombieSpawnTimer <= 0)
         {
-            zombieSpawnTimer = 2f;
+            zombieSpawnTimer = 1.5f;
             SpawnZombie();
         }
     }
