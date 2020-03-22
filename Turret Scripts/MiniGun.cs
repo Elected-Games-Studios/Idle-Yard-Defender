@@ -12,19 +12,15 @@ public class MiniGun : Turret
     protected float timeToShoot = .2f;
     public string Location { get; set; }
     public string Yard { get; set; }
-    public List<Int64> tempArr = new List<long>();
     public void Awake()
     {
-        targetingComputer = GetComponent<TargetingComputer>();
         Location = gameObject.name;
         Yard = SceneManager.GetActiveScene().name;
-    }
-    public void Start()
-    {
         int intYard = Convert.ToInt32(Yard);
         int intLocation = Convert.ToInt32(Location);
-
-       tempArr = DataBaseManager.TurretStats(intYard, intLocation);
+        targetingComputer = GetComponent<TargetingComputer>();
+        
+        List<Int64> tempArr = DataBaseManager.TurretStats(intYard, intLocation);
 
         LVL = (tempArr[0]);
         ROF = (tempArr[1]);
