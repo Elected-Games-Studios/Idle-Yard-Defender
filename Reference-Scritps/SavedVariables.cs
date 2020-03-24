@@ -1,32 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SavedVariables
+public class SavedVariables : MonoBehaviour
 {
-    public int highScoreSaved;
-    public int zombiesKilledSaved;
-    public int normalKilledSaved;
-    public int fastKilledSaved;
-    public int tankKilledSaved;
-    public int fireKilledSaved;
-    public int magicKilledSaved;
-    public int moneyKilledSaved;
-    public int moneySpentSaved;
-    public int gamesPlayedSaved;
-
-    public SavedVariables (LoadedVariables data)
+    public string SaveString;
+    public long Cash;
+    public long Crypto;
+    public string TurretString { get; set; } = DataBaseManager.SaveSenderTurrets();
+    public void Start()
     {
-        highScoreSaved = data.highScore;
-        zombiesKilledSaved = data.zombiesKilled;
-        normalKilledSaved = data.normalKilled;
-        fastKilledSaved = data.fastKilled;
-        tankKilledSaved = data.tankKilled;
-        fireKilledSaved = data.fireKilled;
-        magicKilledSaved = data.magicKilled;
-        moneyKilledSaved = data.moneyKilled;
-        moneySpentSaved = data.moneySpent;
-        gamesPlayedSaved = data.gamesPlayed;
+        Cash = YardManager.instance.cash;
+        Crypto = YardManager.instance.crypto;
+    }
+    public string StringsToSave()
+    {
+        string CashString = Convert.ToString(Cash);
+        string CryptoString = Convert.ToString(Crypto);
+        string SaveString = CashString + CryptoString + TurretString;
+        return SaveString;
     }
 }

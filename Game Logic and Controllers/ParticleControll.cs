@@ -48,7 +48,7 @@ public class ParticleControll : MonoBehaviour
 		if (co.CompareTag("Enemy"))
 		{
 			co.GetComponent<ZombieValues>().TakeDamage(damage);
-			var hitP = Instantiate(hitPrefab, co.transform.position, co.transform.rotation);
+			var hitP = Instantiate(hitPrefab, co.transform.position, co.transform.rotation); //NEEDS to be pooled 
 			Destroy(hitP, 1);
 			MinigunShotPool.Instance.ReturnToPool(gameObject);
 		}

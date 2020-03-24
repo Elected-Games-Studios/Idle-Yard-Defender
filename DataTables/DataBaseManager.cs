@@ -1,5 +1,7 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.IO;
 

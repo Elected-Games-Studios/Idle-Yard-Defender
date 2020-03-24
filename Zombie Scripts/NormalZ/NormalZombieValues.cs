@@ -35,7 +35,7 @@ public class NormalZombieValues : ZombieValues
         //tell score and cash
         movement.moveSpeed = 0f;
         animator.SetTrigger("isDead");
-        YardUIManager.instance.AddCash(zombieValue);
+        YardManager.instance.AddCash(zombieValue);
         Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
         Destroy(gameObject, 1);
     }
