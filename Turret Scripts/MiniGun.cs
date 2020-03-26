@@ -8,7 +8,6 @@ public class MiniGun : Turret
 {
     TargetingComputer targetingComputer;
     [SerializeField]
-    MinigunShotPool minigunShotPool;
     protected float timeToShoot = .2f;
     public string Location { get; set; }
     public string Yard { get; set; }
@@ -48,7 +47,7 @@ public class MiniGun : Turret
     {
         //reset shoot timer, grab bullet frm pool, set pos&rot to shootpoint pos&rot, set particle lifetime, enable bullet, instnt mzlfx, passtarget, passdmg
         timeToShoot = .2f;
-        var bullet = minigunShotPool.Get();
+        var bullet = MinigunShotPool.Instance.Get();
         bullet.transform.position = shootPoint.transform.position;
         bullet.transform.rotation = shootPoint.transform.rotation;
         bullet.GetComponent<ParticleControll>().lifetime = 4f;

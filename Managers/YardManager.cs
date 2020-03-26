@@ -8,7 +8,6 @@ public class YardManager : MonoBehaviour
     public static int ActiveYard { get; private set; } // maybe don't need this.. 
     public long cash { get; private set; }
     public long crypto { get; private set; }
-
     [SerializeField]
     private Canvas uiCanavs;
     public Text text;
@@ -29,10 +28,10 @@ public class YardManager : MonoBehaviour
     {
         text.text = cash.ToString();
     }
-
     public void AddCash(long cashValue)
     {
         //on enemy death get enemy value and add to cash
         cash += cashValue;
+        LocalSaveEngine.SavePlayer();
     }
 }
