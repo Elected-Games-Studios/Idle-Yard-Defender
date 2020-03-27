@@ -1,16 +1,30 @@
-﻿using System;
-[System.Serializable]
-public static class StatsToSave 
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using System;
+
+[Serializable]
+public class StatsToSave : MonoBehaviour
 {
-    public static long Cash = YardManager.instance.cash;
-    public static long Crypto = YardManager.instance.crypto;
-    public static string TurretString = DataBaseManager.SaveSenderTurrets();
-    public static string SaveString;
-    public static string StringsToSave()
+    public static StatsToSave Instance;
+    public int ActiveYard;
+    public long Cash;
+    public long Crypto;
+    public string TurretString;
+    public string SaveString;
+    public void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+    public string StringsToSave()
+    {
+        Cash = CashManager.instance.Cash;
+        TurretString = DataBaseManager.SaveSenderTurrets();
         string CashString = Convert.ToString(Cash);
-        string CryptoString = Convert.ToString(Crypto);
-        string SaveString = CashString + CryptoString + TurretString;
+        string SaveString = CashString + TurretString;
         return SaveString;
     }
 }
