@@ -27,4 +27,10 @@ public class StatsToSave : MonoBehaviour
         string SaveString = CashString + TurretString;
         return SaveString;
     }
+    public void LoadStats()
+    {
+        StatsToSave stats = LocalSaveEngine.LoadPlayer();
+        CashManager.instance.Cash = Convert.ToInt64(stats.Cash);
+        DataBaseManager.LoadSaveTurrets(stats.TurretString);
+    }
 }
