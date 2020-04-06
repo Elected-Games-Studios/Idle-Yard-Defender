@@ -2,6 +2,7 @@
 using UnityEngine;
 public class NormalZombieValues : ZombieValues
 {
+    CashManager cashMan;
     NormalZombieMovement movement;
     Animator animator;
     public void Awake()
@@ -35,7 +36,7 @@ public class NormalZombieValues : ZombieValues
         //tell score and cash
         movement.moveSpeed = 0f;
         animator.SetTrigger("isDead");
-        CashManager.instance.AddCash(zombieValue);
+        cashMan.AddCash(zombieValue);
         Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
         Destroy(gameObject, 1);
     }

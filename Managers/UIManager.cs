@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     //just pull updated data to be shown from elswhere 
     public static UIManager instance;
+    public EpitomeSS saveState;
     [SerializeField]
     private Canvas uiCanavs;
     public Text text;
@@ -24,6 +25,6 @@ public class UIManager : MonoBehaviour
     }
     public void Update()
     {
-        text.text = CashManager.instance.Cash.ToString();
+        text.text = saveState.Cash.ToString();
     }
 }

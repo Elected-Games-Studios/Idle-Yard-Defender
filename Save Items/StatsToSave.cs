@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System;
 
 [Serializable]
-public class StatsToSave : MonoBehaviour
+public class StatsToSave 
 {
     public static StatsToSave Instance;
     public int ActiveYard;
@@ -12,25 +12,20 @@ public class StatsToSave : MonoBehaviour
     public long Crypto;
     public string TurretString;
     public string SaveString;
-    public void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
+
     public string StringsToSave()
     {
-        Cash = CashManager.instance.Cash;
+        //Cash = CashManager.instance.Cash;
         TurretString = DataBaseManager.SaveSenderTurrets();
         string CashString = Convert.ToString(Cash);
-        string SaveString = CashString + TurretString;
+        string SaveString = CashString; //add a turret string back in here 
         return SaveString;
     }
     public void LoadStats()
     {
-        StatsToSave stats = LocalSaveEngine.LoadPlayer();
-        CashManager.instance.Cash = Convert.ToInt64(stats.Cash);
-        DataBaseManager.LoadSaveTurrets(stats.TurretString);
+        //LocalSaveEngine.LoadPlayer();
+        //StatsToSave stats = LocalSaveEngine.LoadPlayer();
+        //CashManager.instance.Cash = Convert.ToInt64(stats.Cash);
+        //DataBaseManager.LoadSaveTurrets(stats.TurretString);
     }
 }

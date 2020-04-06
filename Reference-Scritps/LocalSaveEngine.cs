@@ -13,22 +13,26 @@ public static class LocalSaveEngine
         binaryFormatter.Serialize(stream, StatsToSave.Instance.StringsToSave());
         stream.Close();
     }
-    public static StatsToSave LoadPlayer()
+    public static void LoadPlayer()
     {
+        StatsToSave stats = new StatsToSave();
+        BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Player-Data-Stats.json";
+        FileStream filestream = new FileStream(path, FileMode.Open, FileAccess.Read);
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream filestream = new FileStream(path, FileMode.Open);
-            StatsToSave returnValue = new StatsToSave();
-            returnValue = formatter.Deserialize(filestream) as StatsToSave;
-            filestream.Close();
-            return returnValue;
-        }
-        else
-        {
-            Debug.LogError("Save file not found in " + path);
-            return null;
+            try
+            {
+                using (filestream)
+                {
+                    stats = (StatsToSave)formatter.Deserialize(filestream);
+                    //CashManager.instance.Cash = stats.Cash;
+                }
+            }
+            catch
+            {
+                Debug.Log("error has occured");
+            }
         }
     }
 }
