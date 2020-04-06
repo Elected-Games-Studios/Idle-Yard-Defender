@@ -3,19 +3,10 @@
 [System.Serializable]
 public class EpitomeSS
 {
-    CashManager cashMan;
-    public long Cash
-    {
-        get => cashMan.Cash;
-        set => Cash = value;
-    }
-    public long Crypto
-    {
-        get => cashMan.Crypto;
-        set => Cash = value;
-    }
+    public static long Cash = 0;
+    public static long Crypto = 0;
     public DateTime LastSaveTime { get; set; }
-    public string TurretString
+    public static string TurretString
     {
         get => DataBaseManager.SaveSenderTurrets();
         set => TurretString = value;

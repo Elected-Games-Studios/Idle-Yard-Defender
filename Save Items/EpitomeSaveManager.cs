@@ -32,6 +32,7 @@ public class EpitomeSaveManager : MonoBehaviour
     [SerializeField] private string savefileName = "data.ss";
     [SerializeField] private bool loadOnStart = true;
     private EpitomeSS state;
+    public EpitomeSS State { get => state; set => state = value; }
     private BinaryFormatter formatter;
 
     private void Start()
@@ -43,27 +44,28 @@ public class EpitomeSaveManager : MonoBehaviour
             Load();
     }
 
-    private void Save()
+    public void Save()
     {
         if(state == null)
             state = new EpitomeSS();
+        Debug.Log(EpitomeSS.TurretString);
         state.LastSaveTime = DateTime.Now;
-        var file = new FileStream(savefileName, FileMode.Create, FileAccess.Write);
+        var file = new FileStream(savefileName, FileMode.OpenOrCreate, FileAccess.Write);
         formatter.Serialize(file, state);
         file.Close();
     }
 
-    private void Load()
+    public void Load()
     {
-        var file = new FileStream(savefileName, FileMode.Open, FileAccess.Read);
-        if(file != null)
+        try
         {
+            var file = new FileStream(savefileName, FileMode.Open, FileAccess.Read);
             state = (EpitomeSS)formatter.Deserialize(file);
             file.Close();
         }
-        else
+        catch
         {
-            Debug.Log("No save file found...");
+            Debug.Log("No save file found, Creating a file!");
             Save();
         }
     }

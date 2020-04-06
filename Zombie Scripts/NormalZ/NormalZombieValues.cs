@@ -9,6 +9,7 @@ public class NormalZombieValues : ZombieValues
     {
         movement = GetComponent<NormalZombieMovement>();
         animator = GetComponent<Animator>();
+        cashMan = FindObjectOfType<CashManager>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
         MaxHealth = 10;

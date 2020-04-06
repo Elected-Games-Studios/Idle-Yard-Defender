@@ -8,6 +8,7 @@ public class FastZombieValues: ZombieValues
     {
         movement = GetComponent<FastZombieMovement>();
         animator = GetComponent<Animator>();
+        cashMan = FindObjectOfType<CashManager>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
         MaxHealth = 5;
