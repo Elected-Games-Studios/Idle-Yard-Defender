@@ -7,17 +7,17 @@ public static class LocalSaveEngine
 {
     public static void SavePlayer()
     {
-        string path = Application.persistentDataPath + "/Player-Data-Stats.json";
+        string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
         FileStream stream = new FileStream(path, FileMode.Create);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
-        binaryFormatter.Serialize(stream, StatsToSave.Instance.StringsToSave());
+        binaryFormatter.Serialize(stream, StatsToSave.StringsToSave());
         stream.Close();
     }
     public static void LoadPlayer()
     {
         StatsToSave stats = new StatsToSave();
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/Player-Data-Stats.json";
+        string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
         FileStream filestream = new FileStream(path, FileMode.Open, FileAccess.Read);
         if (File.Exists(path))
         {
@@ -31,7 +31,7 @@ public static class LocalSaveEngine
             }
             catch
             {
-                Debug.Log("error has occured");
+                Debug.Log("Saving error has occured");
             }
         }
     }

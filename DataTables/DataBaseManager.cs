@@ -54,10 +54,17 @@ public static class DataBaseManager
         for (int i = 0; i > yards.Count; i++)
         {
             Int64[,] tempArr = yards[i];
-            Save += tempArr.ToString();
+            for (int j = 0; j < 50; j++)
+            {
+                Save += tempArr[j, 0];
+                Save += ".";
+                Save += tempArr[j, 1];
+                Save += ".";
+                Save += tempArr[j, 2];
+                Save += ".";
+            }
             Save += "|";
         }
-        Save += " |";
         Save += YardPrestigeList.ToString();
         return Save;
     }

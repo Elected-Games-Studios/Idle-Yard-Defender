@@ -4,16 +4,15 @@ using UnityEngine.UI;
 using System;
 
 [Serializable]
-public class StatsToSave 
+public static class StatsToSave 
 {
-    public static StatsToSave Instance;
-    public int ActiveYard;
-    public long Cash;
-    public long Crypto;
-    public string TurretString;
-    public string SaveString;
+    public static int ActiveYard;
+    public static long Cash;
+    public static long Crypto;
+    public static string TurretString;
+    public static string SaveString;
 
-    public string StringsToSave()
+    public static string StringsToSave()
     {
         //Cash = CashManager.instance.Cash;
         TurretString = DataBaseManager.SaveSenderTurrets();
@@ -21,7 +20,7 @@ public class StatsToSave
         string SaveString = CashString; //add a turret string back in here 
         return SaveString;
     }
-    public void LoadStats()
+    public static void LoadStats()
     {
         //LocalSaveEngine.LoadPlayer();
         //StatsToSave stats = LocalSaveEngine.LoadPlayer();

@@ -6,23 +6,18 @@ public class CashManager : MonoBehaviour
 {
     public long Cash
     {
-        get => EpitomeSS.Cash;
+        get => StatsToSave.Cash;
         set => Cash = value;
     }
     public long Crypto
     {
-        get => EpitomeSS.Crypto;
+        get => StatsToSave.Crypto;
         set => Crypto = value;
-    }
-
-    void Awake()
-    {
-
     }
     public void AddCash(long value)
     {
-        EpitomeSS.Cash += value;
-        EpitomeSaveManager.Instance.Save();
+        StatsToSave.Cash += value;
+        LocalSaveEngine.SavePlayer();
         /*i could make this an event called SaveableEvent and anything that 
         subscribes to this could cause a save..  which would be more extensible*/
     }

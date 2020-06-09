@@ -24,14 +24,9 @@ public class GameManager : MonoBehaviour
             instance = value;
         }
     }
-
-    public void Awake()
-    {
-        
-    }
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        EpitomeSaveManager.Instance.Load();
+        LocalSaveEngine.LoadPlayer();
     }
 }
