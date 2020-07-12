@@ -15,7 +15,7 @@ public static class LocalSaveEngine
     }
     public static void LoadPlayer()
     {
-        StatsToSave stats = new StatsToSave();
+        //stats();
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
         FileStream filestream = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -25,7 +25,7 @@ public static class LocalSaveEngine
             {
                 using (filestream)
                 {
-                    stats = (StatsToSave)formatter.Deserialize(filestream);
+                    //stats = (StatsToSave)formatter.Deserialize(filestream);
                     //CashManager.instance.Cash = stats.Cash;
                 }
             }
