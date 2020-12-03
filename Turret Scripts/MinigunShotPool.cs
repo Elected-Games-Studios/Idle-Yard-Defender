@@ -9,10 +9,8 @@ public class MinigunShotPool : MonoBehaviour
     public static MinigunShotPool Instance { get; private set; }
     private Queue<GameObject> bulletQueue = new Queue<GameObject>();
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    private void Awake() => Instance = this;
+
     public GameObject Get()
     {
         if (bulletQueue.Count == 0)

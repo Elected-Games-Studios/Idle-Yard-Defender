@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 public class FastZombieValues: ZombieValues
 {
-    CashManager cashMan;
-    protected FastZombieMovement movement;
-    private Animator animator;
     public void Awake()
     {
-        movement = GetComponent<FastZombieMovement>();
-        animator = GetComponent<Animator>();
-        cashMan = FindObjectOfType<CashManager>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
         MaxHealth = 5;
@@ -18,8 +12,10 @@ public class FastZombieValues: ZombieValues
     }
     public override void TakeDamage(long damage)
     {
-        if (currentHealth <= 0 && !isDead)
-            HandleZombieDeath();
+        if (currentHealth <= 0)
+        {
+            ZombieDeath();
+        }
         else
         {
             currentHealth -= damage;
@@ -28,16 +24,8 @@ public class FastZombieValues: ZombieValues
             //maybe trigger animator zombie hurt anim
         }
     }
-    private void HandleZombieDeath()
+    public override void ZombieDeath()
     {
-        Vector3 newSpawnPos = transform.position + new Vector3(0, 1, 0);
-        isDead = true;
-        //play death sound
-        //tell score and cash
-        movement.moveSpeed = 0f;
-        animator.SetTrigger("isDead");
-        cashMan.AddCash(zombieValue);
-        Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
-        Destroy(gameObject, 1);
+        //any fast zombie death stuff specific to fast zombies
     }
 }

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public abstract class Turret : MonoBehaviour//, IHaveStats
+public abstract class Turret : MonoBehaviour
 {
     [SerializeField]
     protected Transform rotateBody;
