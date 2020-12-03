@@ -6,9 +6,8 @@ public abstract class ZombieValues : MonoBehaviour
 {
     //get zombie health values and do zombie dmg based on
 
-    public event HandleZombieDeath OnZDeath;
-
-    public delegate void HandleZombieDeath();
+    public event Action OnZDeath;
+    
     public Animator animator;
     public CashManager cashMan;
     [SerializeField]
