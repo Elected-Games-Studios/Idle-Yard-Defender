@@ -1,0 +1,67 @@
+﻿using System;
+using UnityEngine;
+using System.Collections.Generic;
+
+
+public class TargetingComputerV2 : MonoBehaviour
+    {
+        public GameObject Target { get; private set; }
+        [SerializeField]
+        private Queue<GameObject> _enemyQueue = new Queue<GameObject>();
+        public bool targetAquired = false;
+        public ZombieValues zombieValues;
+        private long targetHealth;
+
+        public void Update()
+        {
+            if (targetAquired == true)
+            {
+                zombieValues = Target.GetComponent<ZombieValues>();
+                targetHealth = zombieValues.currentHealth;
+            }
+            else
+            {
+                MaintainQueue();
+            }
+        }
+
+        public void OnTriggerEnter(Collider co)
+        {
+            //if the object tagged enemy is not in the enemy Queue, add it.
+            if (co.CompareTag("Enemy") && !_enemyQueue.Contains(co.gameObject))
+            {
+                _enemyQueue.Enqueue(co.gameObject);
+                Target = _enemyQueue.Peek();
+                targetAquired = true;
+            }
+        }
+        
+        public void MaintainQueue()
+        {
+            if (targetHealth <= 0)
+            {
+                _enemyQueue.Dequeue();
+                targetAquired = false;
+                if(_enemyQueue.Count != 0)
+                    Target = _enemyQueue.Peek();
+            }
+        }
+
+        public void OnTriggerExit(Collider co)
+        {
+            if (co.CompareTag("Enemy") && _enemyQueue.Contains(co.gameObject))
+            {
+                _enemyQueue.Dequeue();
+                targetAquired = false;
+                if (_enemyQueue.Count != 0) 
+                {
+                    Target = _enemyQueue.Peek(); 
+                }
+                else
+                {
+                    Target = null;
+                }
+            }
+        }
+    }
+    

@@ -9,8 +9,10 @@ public class FastZombieValues: ZombieValues
         currentHealth = MaxHealth;
         zombieLevel = 1;
         zombieValue = 20;
+        animator = GetComponent<Animator>();
+        cashMan = FindObjectOfType<CashManager>();
     }
-    public override void TakeDamage(long damage)
+    /*public override void TakeDamage(long damage)
     {
         if (currentHealth <= 0)
         {
@@ -23,9 +25,14 @@ public class FastZombieValues: ZombieValues
             //play Audios.HurtAudio
             //maybe trigger animator zombie hurt anim
         }
+<<<<<<< Updated upstream
     }
     public override void ZombieDeath()
     {
         //any fast zombie death stuff specific to fast zombies
     }
+=======
+    }*/
+
+>>>>>>> Stashed changes
 }

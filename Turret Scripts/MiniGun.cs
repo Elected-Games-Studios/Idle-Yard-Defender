@@ -6,7 +6,7 @@ using System.Text;
 using System.IO;
 public class MiniGun : Turret
 {
-    TargetingComputer targetingComputer;
+    TargetingComputerV2 targetingComputer;
     [SerializeField]
     protected float timeToShoot = .2f;
     public string Location { get; set; }
@@ -14,7 +14,7 @@ public class MiniGun : Turret
     public List<Int64> tempArr = new List<long>();
     public void Awake()
     {
-        targetingComputer = GetComponent<TargetingComputer>();
+        targetingComputer = GetComponent<TargetingComputerV2>();
         Location = gameObject.name;
         Yard = SceneManager.GetActiveScene().name;
     }
