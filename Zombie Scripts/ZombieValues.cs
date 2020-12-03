@@ -1,10 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class ZombieValues : MonoBehaviour
 
 {
     //get zombie health values and do zombie dmg based on
+<<<<<<< HEAD
 
 <<<<<<< Updated upstream
     public event Action OnZDeath;
@@ -14,6 +14,9 @@ public abstract class ZombieValues : MonoBehaviour
     
     public Animator animator;
     public CashManager cashMan;
+=======
+    public bool isDead = false;
+>>>>>>> parent of b774816... Reworking Targeting for Events
     [SerializeField]
     protected GameObject _coinPrefab;
 
@@ -21,6 +24,7 @@ public abstract class ZombieValues : MonoBehaviour
     public int zombieLevel { get; set; }
     public long zombieValue { get; set; } //cash value could set with a method call here
     public long currentHealth {get; set;}
+<<<<<<< HEAD
 
 <<<<<<< Updated upstream
     public void Awake()
@@ -71,4 +75,7 @@ public abstract class ZombieValues : MonoBehaviour
 =======
     
 >>>>>>> Stashed changes
+=======
+    public abstract void TakeDamage(long damage);
+>>>>>>> parent of b774816... Reworking Targeting for Events
 }
