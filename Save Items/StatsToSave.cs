@@ -22,9 +22,9 @@ public static class StatsToSave
     }
     public static void LoadStats()
     {
-        //LocalSaveEngine.LoadPlayer();
-        //StatsToSave stats = LocalSaveEngine.LoadPlayer();
-        //CashManager.instance.Cash = Convert.ToInt64(stats.Cash);
-        //DataBaseManager.LoadSaveTurrets(stats.TurretString);
+        LocalSaveEngine.LoadPlayer();
+        StatsToSave stats = LocalSaveEngine.LoadPlayer();
+        CashManager.instance.Cash = Convert.ToInt64(stats.Cash);
+        DataBaseManager.LoadSaveTurrets(stats.TurretString);
     }
 }

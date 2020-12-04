@@ -30,6 +30,8 @@ public class TargetingComputer : MonoBehaviour
             }*/
             targetHealth = Target.GetComponent<ZombieValues>().currentHealth;
             targetAquired = true;
+            if(targetHealth <= 0)
+                MaintainQueue();
         }
         else
         {
