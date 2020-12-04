@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 public class FastZombieValues: ZombieValues
 {
-    CashManager cashMan;
     protected FastZombieMovement movement;
-    private Animator animator;
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
         movement = GetComponent<FastZombieMovement>();
-        animator = GetComponent<Animator>();
-        cashMan = FindObjectOfType<CashManager>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
         MaxHealth = 5;
         currentHealth = MaxHealth;
         zombieLevel = 1;
         zombieValue = 20;
-        animator = GetComponent<Animator>();
-        cashMan = FindObjectOfType<CashManager>();
     }
     /*public override void TakeDamage(long damage)
     {
@@ -46,5 +41,4 @@ public class FastZombieValues: ZombieValues
 =======
     }*/
 
->>>>>>> Stashed changes
 }

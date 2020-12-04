@@ -2,22 +2,17 @@
 using UnityEngine;
 public class NormalZombieValues : ZombieValues
 {
-    CashManager cashMan;
     NormalZombieMovement movement;
-    Animator animator;
-    public void Awake()
+    public override void Awake()
     {
+        base.Awake();
         movement = GetComponent<NormalZombieMovement>();
-        animator = GetComponent<Animator>();
-        cashMan = FindObjectOfType<CashManager>();
         //GetComponent<Audios>();
         //GetComponent<Particles>();
         MaxHealth = 10;
         currentHealth = MaxHealth;
         zombieLevel = 1;
         zombieValue = 10;
-        animator = GetComponent<Animator>();
-        cashMan = FindObjectOfType<CashManager>();
     }
     
     /*public override void TakeDamage(long damage)
@@ -50,19 +45,5 @@ public class NormalZombieValues : ZombieValues
             Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
             Destroy(gameObject, 1); //return to pool
         }*/
->>>>>>> Stashed changes
-=======
-        private void HandleZombieDeath()
-    {
-        Vector3 newSpawnPos = transform.position + new Vector3(0, 1, 0);
-        isDead = true;
-        //play death sound
-        //tell score and cash
-        movement.moveSpeed = 0f;
-        animator.SetTrigger("isDead");
-        cashMan.AddCash(zombieValue);
-        Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
-        Destroy(gameObject, 1);
-    }
->>>>>>> parent of b774816... Reworking Targeting for Events
+
 }

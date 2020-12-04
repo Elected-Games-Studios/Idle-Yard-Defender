@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class TargetingComputerV2 : MonoBehaviour
+public class TargetingComputer : MonoBehaviour
     {
         public GameObject Target { get; private set; }
         [SerializeField]

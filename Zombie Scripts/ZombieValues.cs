@@ -4,19 +4,9 @@ public abstract class ZombieValues : MonoBehaviour
 
 {
     //get zombie health values and do zombie dmg based on
-<<<<<<< HEAD
-
-<<<<<<< Updated upstream
-    public event Action OnZDeath;
-=======
-
->>>>>>> Stashed changes
-    
     public Animator animator;
     public CashManager cashMan;
-=======
     public bool isDead = false;
->>>>>>> parent of b774816... Reworking Targeting for Events
     [SerializeField]
     protected GameObject _coinPrefab;
 
@@ -24,27 +14,13 @@ public abstract class ZombieValues : MonoBehaviour
     public int zombieLevel { get; set; }
     public long zombieValue { get; set; } //cash value could set with a method call here
     public long currentHealth {get; set;}
-<<<<<<< HEAD
-
-<<<<<<< Updated upstream
-    public void Awake()
+    public virtual void Awake()
     {
         animator = GetComponent<Animator>();
         cashMan = FindObjectOfType<CashManager>();
         
     }
 
-    public virtual void TakeDamage(long damage)
-    {
-        if (currentHealth <= 0)
-        {
-            OnZDeath?.Invoke();
-            ZombieDeath();
-        }
-    }
-
-    public virtual void ZombieDeath()
-=======
     public virtual void TakeDamage(long damage)
     {
         currentHealth -= damage;
@@ -60,7 +36,6 @@ public abstract class ZombieValues : MonoBehaviour
 
 
     public void ZombieDeath()
->>>>>>> Stashed changes
     {
         Vector3 newSpawnPos = transform.position + new Vector3(0, 1, 0);
         //play death sound
@@ -71,11 +46,4 @@ public abstract class ZombieValues : MonoBehaviour
         Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
         Destroy(gameObject, 1); //return to pool
     }
-<<<<<<< Updated upstream
-=======
-    
->>>>>>> Stashed changes
-=======
-    public abstract void TakeDamage(long damage);
->>>>>>> parent of b774816... Reworking Targeting for Events
 }
