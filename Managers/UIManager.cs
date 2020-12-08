@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditorInternal;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public EpitomeSS saveState;
+    //public EpitomeSS saveState;
     [SerializeField] private Canvas uiCanavs;
     public Text text;
     public void Awake()
@@ -14,6 +15,6 @@ public class UIManager : MonoBehaviour
     }
     public void Update()
     {
-        text.text = EpitomeSS.Cash.ToString();
+        text.text = StatsToSave.Cash.ToString();
     }
 }

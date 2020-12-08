@@ -7,15 +7,18 @@ using static StatsToSave;
 
 public static class LocalSaveEngine
 {
-    /*public static void SavePlayer()
+    private static StatsToSave statsToSave;
+    public static string Sts;
+    public static void SavePlayer()
     {
+        Sts = statsToSave.StringsToSave();
         string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
         FileStream stream = new FileStream(path, FileMode.Create);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
-        binaryFormatter.Serialize(stream, StatsToSave.StringsToSave());
+        binaryFormatter.Serialize(stream, Sts);
         stream.Close();
     }
-    public static void LoadPlayer()
+    /*public static void LoadPlayer()
     {
         //stats();
         BinaryFormatter formatter = new BinaryFormatter();
@@ -27,8 +30,8 @@ public static class LocalSaveEngine
             {
                 using (filestream)
                 {
-                    var stats = (StatsToSave) formatter.Deserialize(filestream);
-                    CashManager.instance.Cash = stats.Cash;
+                    (StatsToSave) formatter.Deserialize(filestream);
+                    CashManager.Cash = stats.Cash;
                 }
             }
             catch
@@ -37,7 +40,7 @@ public static class LocalSaveEngine
             }
         }
     }*/
-    public static void SavePlayer(string saveString)
+    /*public static void SavePlayer(string saveString)
     {   //create binary file 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(Application.persistentDataPath+"/player.sav",FileMode.Create);
@@ -65,5 +68,5 @@ public static class LocalSaveEngine
             Debug.LogError("File don't exist!");
             return new int[5];
         }
-    }
+    }*/
 }

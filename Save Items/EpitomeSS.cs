@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 
 [System.Serializable]
 public class EpitomeSS
@@ -11,6 +11,6 @@ public class EpitomeSS
         get => DataBaseManager.SaveSenderTurrets();
         set => TurretString = value;
     }
-}
+}*/
 
  
