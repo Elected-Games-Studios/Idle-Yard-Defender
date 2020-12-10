@@ -13,7 +13,7 @@ public class StatsToSave
     public static string SaveString;
     private CashManager cashManager;
 
-    public string StringsToSave()
+    public static string StringsToSave()
     {
         TurretString = DataBaseManager.SaveSenderTurrets();
         string CashString = Convert.ToString(Cash);
@@ -23,7 +23,7 @@ public class StatsToSave
     /*public static void LoadStats()
     {
         LocalSaveEngine.LoadPlayer();
-        Cash = Convert.ToInt64(Cash);
+        CashString = Convert.ToInt64(Cash);
         DataBaseManager.LoadSaveTurrets(TurretString);
     }*/
 }

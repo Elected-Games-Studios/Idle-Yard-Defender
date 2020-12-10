@@ -4,9 +4,6 @@ using System.Collections;
 
 public class CashManager : MonoBehaviour
 {
-    //private StatsToSave statsToSave;
-    
-
     public long Cash
     {
         get => StatsToSave.Cash;

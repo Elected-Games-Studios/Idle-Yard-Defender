@@ -44,6 +44,6 @@ public abstract class ZombieValues : MonoBehaviour
         animator.SetTrigger("isDead");
         cashMan.AddCash(zombieValue);
         Instantiate(_coinPrefab, newSpawnPos, transform.rotation);
-        Destroy(gameObject, 1); //return to pool
+        Destroy(gameObject, .25f); //return to pool
     }
 }

@@ -11,16 +11,15 @@ public static class LocalSaveEngine
     public static string Sts;
     public static void SavePlayer()
     {
-        Sts = statsToSave.StringsToSave();
+        var save = StringsToSave();
         string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
         FileStream stream = new FileStream(path, FileMode.Create);
         BinaryFormatter binaryFormatter = new BinaryFormatter();
-        binaryFormatter.Serialize(stream, Sts);
+        binaryFormatter.Serialize(stream, save);
         stream.Close();
     }
     /*public static void LoadPlayer()
     {
-        //stats();
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
         FileStream filestream = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -30,7 +29,8 @@ public static class LocalSaveEngine
             {
                 using (filestream)
                 {
-                    (StatsToSave) formatter.Deserialize(filestream);
+                    string loadString;
+                    (loadString) formatter.Deserialize(filestream);
                     CashManager.Cash = stats.Cash;
                 }
             }
