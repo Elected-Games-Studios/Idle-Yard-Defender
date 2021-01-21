@@ -9,14 +9,19 @@ public static class SaveManager
         string tempSave = "";
         tempSave += DataBaseManager.SaveSenderTurrets();
         tempSave += '#';
+        //tempSAve += DataBaseManager.SaveSenderZombies();
+        //tempSave += '#';
+        //tempSave += DataBaseManager.SaveSenderHouse();
+        //tempSave += '#';
         tempSave += Convert.ToString(DataBaseManager.cash);
         tempSave += '#';
         tempSave += Convert.ToString(DataBaseManager.crypto);
         tempSave += '#';
         tempSave += Convert.ToString(DataBaseManager.LastUpdate);
+        // do the local file saving here and then pack it to google. 
         return (Encoding.UTF8.GetBytes(tempSave));
     }
-    //send this what google sends you, the blob.
+    //take googles blob and unpack it
     public static void LoadSplit(byte[] loadData)
     {
         string Loadstr = System.Text.Encoding.UTF8.GetString(loadData);
@@ -24,6 +29,8 @@ public static class SaveManager
         if (tempLoad.Length > 0)
         {
             DataBaseManager.LoadSaveTurrets(tempLoad[0]);
+            //DataBaseManager.LoadSaveZombies(tempLoad[x]);
+            //DataBaseManager.LoadSaveHouse(tempLoad[x]);
             DataBaseManager.cash = Convert.ToInt64(tempLoad[1]);
             DataBaseManager.crypto = Convert.ToInt64(tempLoad[2]);
             DataBaseManager.LastUpdate = Convert.ToDateTime(tempLoad[3]);
