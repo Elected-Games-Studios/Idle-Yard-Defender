@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public static class DataBaseManager
 {
+    public static Int64 cash, crypto;
+    public static DateTime LastUpdate = new DateTime();
     private static Int64[,] defaultstart = new Int64[50, 4]//Used start any new yard that is unlocked
     {
         {1, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0},
@@ -383,5 +385,11 @@ public static class DataBaseManager
         currentyard[location, 2] = turrets[level, 1];
         currentyard[location, 3] = turrets[level, 2];
         yards[yard] = currentyard;
+    }
+    public static void UpdateCylce(int Cash,int Crypto)
+    {
+        LastUpdate = DateTime.UtcNow();
+        cash = Cash;
+        crypto = Crypto;
     }
 }
