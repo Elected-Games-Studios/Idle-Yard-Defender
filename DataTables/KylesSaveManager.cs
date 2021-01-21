@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-public static class SaveManager
+public static class KylesSaveManager
 {
     public static byte[] SaveParse()
     {
-        string tempSave = new string();
+        string tempSave = "";
         tempSave += DataBaseManager.SaveSenderTurrets();
         tempSave += '#';
         tempSave += Convert.ToString(CashManager.Cash);
@@ -15,6 +16,7 @@ public static class SaveManager
     }
     public static void LoadSplit(string Loadstr)
     {
+        
         string[] tempLoad = Loadstr.Split('#');
         DataBaseManager.LoadSaveTurrets(tempLoad[0]);
         CashManager.Cash = Convert.ToInt64(tempLoad[1]);
