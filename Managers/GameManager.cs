@@ -26,6 +26,6 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        LocalSaveEngine.LoadPlayer();
+        //LocalSaveEngine.LoadPlayer();
     }
 }
