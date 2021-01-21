@@ -388,7 +388,7 @@ public static class DataBaseManager
     }
     public static void UpdateCylce(int Cash,int Crypto)
     {
-        LastUpdate = DateTime.UtcNow();
+        LastUpdate = DateTime.UtcNow;
         cash = Cash;
         crypto = Crypto;
     }
