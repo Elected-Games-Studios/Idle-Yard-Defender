@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
-using JetBrains.Annotations;
-using static StatsToSave;
 
 public static class LocalSaveEngine
 {
@@ -18,7 +17,7 @@ public static class LocalSaveEngine
         binaryFormatter.Serialize(stream, save);
         stream.Close();
     }
-    /*public static void LoadPlayer()
+    public static void LoadPlayer()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Player-Data-Stats.dat";
@@ -39,8 +38,8 @@ public static class LocalSaveEngine
                 Debug.Log("Saving error has occured");
             }
         }
-    }*/
-    /*public static void SavePlayer(string saveString)
+    }
+    public static void SavePlayer(string saveString)
     {   //create binary file 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(Application.persistentDataPath+"/player.sav",FileMode.Create);
@@ -68,5 +67,6 @@ public static class LocalSaveEngine
             Debug.LogError("File don't exist!");
             return new int[5];
         }
-    }*/
+    }
 }
+*/

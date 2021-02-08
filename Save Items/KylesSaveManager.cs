@@ -1,6 +1,6 @@
 using System;
 using System.Text;
-public static class SaveManager
+public static class KylesSaveManager
 {
     private static string[] tempLoad;
     //returns the blob to send to google
@@ -21,8 +21,8 @@ public static class SaveManager
         // do the local file saving here and then pack it to google. 
         return (Encoding.UTF8.GetBytes(tempSave));
     }
-    //take googles blob and unpack it
-    public static void LoadSplit(byte[] loadData)
+    
+    public static void LoadSplit(byte[] loadData) //take googles blob and unpack it
     {
         string Loadstr = System.Text.Encoding.UTF8.GetString(loadData);
         tempLoad = Loadstr.Split('#');

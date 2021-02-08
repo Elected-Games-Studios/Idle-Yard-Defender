@@ -17,7 +17,7 @@ public class CashManager : MonoBehaviour
     public void AddCash(long value)
     {
         StatsToSave.Cash += value;
-        LocalSaveEngine.SavePlayer();
+        //LocalSaveEngine.SavePlayer();
         /*i could make this an event called SaveableEvent and anything that 
         subscribes to this could cause a save..  which would be more extensible*/
     }
