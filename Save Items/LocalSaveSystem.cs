@@ -5,6 +5,7 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Win32.SafeHandles;
 
 public static class LocalSaveSystem
 {
@@ -44,13 +45,13 @@ public static class LocalSaveSystem
         Directory.CreateDirectory(path);
     }
 
-    public static void Save <T>(T objectToSave)
+    public static void Save <T>(T objectToSave) //run saveparse and pass it in here when you run the save.
     {
-        var path = Application.persistentDataPath + "/saves/";
+        var path = Application.persistentDataPath + "/testsaves/";
         Directory.CreateDirectory(path);
         var formatter = new BinaryFormatter();
         //using puts something memory but once it's done it dumps it.
-        using var filestream = new FileStream(path, FileMode.Create);
+        using var filestream = new FileStream (path,FileMode.Create, FileAccess.Write); //this does not work.. says no access
         //objectToSave should be cast right here as the saveparse method return.. 
         formatter.Serialize(filestream, objectToSave);
     }

@@ -4,19 +4,19 @@ using System.Collections;
 
 public class CashManager : MonoBehaviour
 {
-    public long Cash
+    public Int64 cash
     {
-        get => StatsToSave.Cash;
-        set => Cash = value;
+        get => DataBaseManager.cash;
+        set => cash = value;
     }
-    public long Crypto
+    public long crypto
     {
-        get => StatsToSave.Crypto;
-        set => Crypto = value;
+        get => DataBaseManager.crypto;
+        set => crypto = value;
     }
-    public void AddCash(long value)
+    public void AddCash(Int64 value)
     {
-        StatsToSave.Cash += value;
+        DataBaseManager.cash += value;
         //LocalSaveEngine.SavePlayer();
         /*i could make this an event called SaveableEvent and anything that 
         subscribes to this could cause a save..  which would be more extensible*/

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityEditorInternal;
 using UnityEngine.UI;
@@ -15,6 +16,12 @@ public class UIManager : MonoBehaviour
     }
     public void Update()
     {
-        text.text = StatsToSave.Cash.ToString();
+        text.text = DataBaseManager.cash.ToString();
+    }
+
+    public void CallSave() //attached this to a button, not final
+    {
+        var saveitem = LocalSaveSystem.SaveParse();
+        LocalSaveSystem.Save(saveitem);
     }
 }
