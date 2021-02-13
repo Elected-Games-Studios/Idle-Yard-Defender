@@ -18,10 +18,4 @@ public class UIManager : MonoBehaviour
     {
         text.text = DataBaseManager.cash.ToString();
     }
-
-    public void CallSave() //attached this to a button, not final
-    {
-        var saveitem = LocalSaveSystem.SaveParse();
-        LocalSaveSystem.Save(saveitem);
-    }
 }

@@ -5,15 +5,16 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.Win32.SafeHandles;
-
+//handles packing local data and save/load of that data if need be.
 public static class LocalSaveSystem
 {
     private static string[] tempLoad;
 
     #region SaveStuff
 
-    public static byte[] SaveParse() //Kyles string appending logic for the save; returns the blob to send to google
+    public static string SaveParse() //Kyles string appending logic for the save; returns string to send to google
     {
         var tempSave = "";
         tempSave += DataBaseManager.SaveSenderTurrets();
@@ -26,15 +27,8 @@ public static class LocalSaveSystem
         tempSave += '#';
         tempSave += Convert.ToString(DataBaseManager.crypto);
         tempSave += '#';
-        tempSave += Convert.ToString(DataBaseManager.LastUpdate);
-        // do the local file saving here and then pack it to google. 
-        return Encoding.UTF8.GetBytes(tempSave);
-    }
-
-    public static bool SaveExists() //check if your file path contains your named file
-    {
-        var path = Application.persistentDataPath + "/saves/";
-        return File.Exists(path);
+        tempSave += DataBaseManager.LastUpdate; //is already  a string, no conversion required.
+        return tempSave;
     }
 
     public static void SeriousllyDeleteAllSaveFiles() //for whatever reason you may have you can delete the entire save directory and make a brand new one... care.
@@ -45,39 +39,44 @@ public static class LocalSaveSystem
         Directory.CreateDirectory(path);
     }
 
-    public static void Save <T>(T objectToSave) //run saveparse and pass it in here when you run the save.
+    public static void LocalSave (string objectToSave)
     {
-        var path = Application.persistentDataPath + "/testsaves/";
-        Directory.CreateDirectory(path);
+        //pass in SaveParse.tempSave on call
+        byte[] dataToSave = Encoding.ASCII.GetBytes(objectToSave);
+        var path = Application.persistentDataPath + "/testIdleYardSaves/";
         var formatter = new BinaryFormatter();
-        //using puts something memory but once it's done it dumps it.
-        using var filestream = new FileStream (path,FileMode.Create, FileAccess.Write); //this does not work.. says no access
-        //objectToSave should be cast right here as the saveparse method return.. 
-        formatter.Serialize(filestream, objectToSave);
+        using var filestream = new FileStream(path, FileMode.Create);
+        formatter.Serialize(filestream, dataToSave);
+        filestream.Close();
     }
 
     #endregion
 
     #region LoadStuff
 
-    public static T Load<T>()
+    public static bool SaveExists() //check if your file path contains your named file
     {
-        var path = Application.persistentDataPath + "/saves/";
+        var path = Application.persistentDataPath + "/testIdleYardSaves/";
+        return File.Exists(path);
+    }
+    public static byte[] Load ()
+    {
+        //saveExists catch
+        var path = Application.persistentDataPath + "/testIdleYardSaves/";
         var formatter = new BinaryFormatter();
         //this auto fills in the nulls as a default value for that type if it doesnt find any there!
-        var returnValue = default(T);
+        byte[] returnValue;
         //using puts something memory but once it's done it frees it up and dumps it.
         using (var filestream = new FileStream(path, FileMode.Open))
         {
-            returnValue = (T) formatter.Deserialize(filestream);
+            returnValue = formatter.Deserialize(filestream) as byte[];
         }
-
         return returnValue;
     }
 
     public static void LoadSplit(byte[] loadData) //take googles blob and unpack it
     {
-        var Loadstr = Encoding.UTF8.GetString(loadData);
+        var Loadstr = Encoding.ASCII.GetString(loadData);
         tempLoad = Loadstr.Split('#');
         if (tempLoad.Length > 0)
         {
