@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        //LocalSaveEngine.LoadPlayer();
+        PlayServices.Instance.LoadData();
     }
+    
 }

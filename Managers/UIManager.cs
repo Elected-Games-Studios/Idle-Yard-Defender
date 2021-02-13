@@ -18,4 +18,18 @@ public class UIManager : MonoBehaviour
     {
         text.text = DataBaseManager.cash.ToString();
     }
+    public void AddTurret()
+    {
+        //button over turret..
+        //click button that reads it's name and asks to unlock the corresponding turret
+        var buttonName = gameObject.name;
+        //activates turret
+        //GameObject.SetActive(GameObject.Find("buttonName"));
+        //saves 
+        //deactivates button
+    }
+    public void CallSave()
+    {
+        LocalSaveSystem.LocalSave(LocalSaveSystem.SaveParse());
+    }
 }

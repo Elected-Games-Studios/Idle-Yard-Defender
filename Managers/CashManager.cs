@@ -9,7 +9,7 @@ public class CashManager : MonoBehaviour
         get => DataBaseManager.cash;
         set => cash = value;
     }
-    public long crypto
+    public Int64 crypto
     {
         get => DataBaseManager.crypto;
         set => crypto = value;
@@ -17,7 +17,7 @@ public class CashManager : MonoBehaviour
     public void AddCash(Int64 value)
     {
         DataBaseManager.cash += value;
-        //LocalSaveEngine.SavePlayer();
+        PlayServices.Instance.SaveData();
         /*i could make this an event called SaveableEvent and anything that 
         subscribes to this could cause a save..  which would be more extensible*/
     }

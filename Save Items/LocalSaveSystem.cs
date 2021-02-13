@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.Win32.SafeHandles;
+
 //handles packing local data and save/load of that data if need be.
 public static class LocalSaveSystem
 {
@@ -31,19 +32,11 @@ public static class LocalSaveSystem
         return tempSave;
     }
 
-    public static void SeriousllyDeleteAllSaveFiles() //for whatever reason you may have you can delete the entire save directory and make a brand new one... care.
-    {
-        var path = Application.persistentDataPath + "/saves/";
-        var directory = new DirectoryInfo(path);
-        directory.Delete();
-        Directory.CreateDirectory(path);
-    }
-
-    public static void LocalSave (string objectToSave)
+    public static void LocalSave(string objectToSave)
     {
         //pass in SaveParse.tempSave on call
         byte[] dataToSave = Encoding.ASCII.GetBytes(objectToSave);
-        var path = Application.persistentDataPath + "/testIdleYardSaves/";
+        var path = Application.persistentDataPath + "/testIdleYardSaves.dat";
         var formatter = new BinaryFormatter();
         using var filestream = new FileStream(path, FileMode.Create);
         formatter.Serialize(filestream, dataToSave);
@@ -54,15 +47,10 @@ public static class LocalSaveSystem
 
     #region LoadStuff
 
-    public static bool SaveExists() //check if your file path contains your named file
-    {
-        var path = Application.persistentDataPath + "/testIdleYardSaves/";
-        return File.Exists(path);
-    }
-    public static byte[] Load ()
+    public static byte[] Load()
     {
         //saveExists catch
-        var path = Application.persistentDataPath + "/testIdleYardSaves/";
+        var path = Application.persistentDataPath + "/testIdleYardSaves.dat";
         var formatter = new BinaryFormatter();
         //this auto fills in the nulls as a default value for that type if it doesnt find any there!
         byte[] returnValue;
@@ -71,6 +59,7 @@ public static class LocalSaveSystem
         {
             returnValue = formatter.Deserialize(filestream) as byte[];
         }
+
         return returnValue;
     }
 
@@ -87,6 +76,21 @@ public static class LocalSaveSystem
             DataBaseManager.crypto = Convert.ToInt64(tempLoad[2]);
             DataBaseManager.LastUpdate = Convert.ToDateTime(tempLoad[3]);
         }
+    }
+
+    public static void
+        SeriousllyDeleteAllSaveFiles() //for whatever reason you may have you can delete the entire save directory and make a brand new one... care.
+    {
+        var path = Application.persistentDataPath + "/saves/";
+        var directory = new DirectoryInfo(path);
+        directory.Delete();
+        Directory.CreateDirectory(path);
+    }
+
+    public static bool SaveExists() //check if your file path contains your named file
+    {
+        var path = Application.persistentDataPath + "/testIdleYardSaves/";
+        return File.Exists(path);
     }
 
     #endregion

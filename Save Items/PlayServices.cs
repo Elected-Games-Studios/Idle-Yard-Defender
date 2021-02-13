@@ -8,7 +8,7 @@ using GooglePlayGames.BasicApi.SavedGame;
 using UnityEngine.SocialPlatforms;
 
 //Handles checking playerprefs for game specific data, calling the local or cloud save and handling that to its end.
-//builds playgames for you
+//builds playgames platform for you
 //signs you in
 //initializes ads
 public class PlayServices : MonoBehaviour
