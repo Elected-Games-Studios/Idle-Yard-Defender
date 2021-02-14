@@ -294,6 +294,13 @@ public static class DataBaseManager
         }
         HandleTurretLoad();
     }
+
+    public static int activeTurretNum(int yard) //returns the number of active turrets to turn on, use this in unity on awake
+    {
+        int x = 0;
+        while (yards[yard][x, 0] > 0) x++;
+        return x;
+    }
     public static string SaveSenderTurrets()
     {
         string Save = "";
@@ -363,7 +370,7 @@ public static class DataBaseManager
         templist.Add(currentyard[location, 3]);
         return (templist);
     }
-    public static List<Int64> HandleNewTurret(int yard, int location)
+    public static List<Int64> HandLeNewTurret(int yard, int location)
     {
         //takes the yard that you are building a turret and places a level one
         Int64[,] currentyard = yards[yard];

@@ -9,7 +9,7 @@ public class ZombieSpawn : MonoBehaviour
     void Update()
     {
         zombieSpawnTimer -= Time.deltaTime;
-        if (zombieSpawnTimer <= 0)
+        if (zombieSpawnTimer <= 0.7f)
         {
             zombieSpawnTimer = 1f;
             SpawnZombie();
