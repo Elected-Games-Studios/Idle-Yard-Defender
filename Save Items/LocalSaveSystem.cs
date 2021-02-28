@@ -5,8 +5,6 @@ using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Microsoft.Win32.SafeHandles;
 
 //handles packing local data and save/load of that data if need be.
 public static class LocalSaveSystem
@@ -17,8 +15,8 @@ public static class LocalSaveSystem
 
     public static string SaveParse() //Kyles string appending logic for the save; returns string to send to google
     {
-        var tempSave = "";
-        tempSave += DataBaseManager.SaveSenderTurrets();
+        string tempSave = "";
+        tempSave += Convert.ToString(DataBaseManager.SaveSenderTurrets());
         tempSave += '#';
         //tempSAve += DataBaseManager.SaveSenderZombies();
         //tempSave += '#';
@@ -28,14 +26,14 @@ public static class LocalSaveSystem
         tempSave += '#';
         tempSave += Convert.ToString(DataBaseManager.crypto);
         tempSave += '#';
-        tempSave += DataBaseManager.LastUpdate; //is already  a string, no conversion required.
+        tempSave += Convert.ToString(DataBaseManager.LastUpdate);
         return tempSave;
     }
 
     public static void LocalSave(string objectToSave)
     {
         //pass in SaveParse.tempSave on call
-        byte[] dataToSave = Encoding.ASCII.GetBytes(objectToSave);
+        byte[] dataToSave = Encoding.UTF8.GetBytes(objectToSave);
         var path = Application.persistentDataPath + "/testIdleYardSaves.dat";
         var formatter = new BinaryFormatter();
         using var filestream = new FileStream(path, FileMode.Create);
@@ -65,7 +63,7 @@ public static class LocalSaveSystem
 
     public static void LoadSplit(byte[] loadData) //take googles blob and unpack it
     {
-        var Loadstr = Encoding.ASCII.GetString(loadData);
+        var Loadstr = Encoding.UTF8.GetString(loadData);
         tempLoad = Loadstr.Split('#');
         if (tempLoad.Length > 0)
         {

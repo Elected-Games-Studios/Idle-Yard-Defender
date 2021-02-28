@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class DataBaseManager
 {
@@ -279,10 +280,10 @@ public static class DataBaseManager
                     Int64[,] tempArr = defaultstart;
                     int iCount = 0;
                     string subset = subOfSaveTurrets[i];
-                    while (subset.IndexOf('.') > 0)
+                    while (subset.IndexOf('-') > 0)
                     {
-                        tempArr[iCount, 0] = Convert.ToInt64(subset.Substring(0, subset.IndexOf('.')));
-                        subset.Remove(0, subset.IndexOf('.') + 1);
+                        tempArr[iCount, 0] = Convert.ToInt64(subset.Substring(0, subset.IndexOf('-')));
+                        subset.Remove(0, subset.IndexOf('-') + 1);
                     }
                 }
                 else
@@ -303,22 +304,24 @@ public static class DataBaseManager
     }
     public static string SaveSenderTurrets()
     {
+        int temp = yards.Count;
         string Save = "";
-        for (int i = 0; i > yards.Count; i++)
+        for (int i = 0; i < yards.Count; i++)
         {
             Int64[,] tempArr = yards[i];
             for (int j = 0; j < 50; j++)
             {
-                Save += tempArr[j, 0];
-                Save += ".";
-                Save += tempArr[j, 1];
-                Save += ".";
-                Save += tempArr[j, 2];
-                Save += ".";
+                Save += Convert.ToString(tempArr[j, 0]);
+                Save += "-";
+                Save += Convert.ToString(tempArr[j, 1]);
+                Save += "-";
+                Save += Convert.ToString(tempArr[j, 2]);
+                Save += "-";
             }
             Save += "|";
+            Debug.Log((""+Save));
         }
-        Save += YardPrestigeList.ToString();
+        //Save += Convert.ToString(YardPrestigeList);
         return Save;
     }
     public static void Starter()//Generates first and/or additional yards.
