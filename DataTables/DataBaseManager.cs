@@ -316,10 +316,15 @@ public static class DataBaseManager
                 Save += Convert.ToString(tempArr[j, 1]);
                 Save += "-";
                 Save += Convert.ToString(tempArr[j, 2]);
-                Save += "-";
+                Save += "=";
             }
             Save += "|";
             Debug.Log((""+Save));
+        }
+        for (int i = 0; i < YardPrestigeList.Count(); i++)
+        {
+            Save += Convert.ToString(YardPrestigeList[i]);
+            if ((i + 1) < YardPrestigeList.Count()) Save += ",";
         }
         //Save += Convert.ToString(YardPrestigeList);
         return Save;
