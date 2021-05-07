@@ -335,6 +335,8 @@ public static class DataBaseManager
     {
         if (yards.Count == 0)
         {
+            cash = 0;
+            crypto = 0;
             YardPrestigeList.Add(0);
             //starts the default game and the first turret
             yards.Add(defaultstart);

@@ -74,6 +74,7 @@ public static class LocalSaveSystem
             DataBaseManager.crypto = Convert.ToInt64(tempLoad[2]);
             DataBaseManager.LoadSaveTurrets(tempLoad[3]);
         }
+        else DataBaseManager.Starter();
     }
 
     public static void
