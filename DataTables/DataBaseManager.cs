@@ -277,12 +277,15 @@ public static class DataBaseManager
                 if (catchFound == false)
                 {
                     Int64[,] tempArr = defaultstart;
-                    int iCount = 0;
-                    string subset = subOfSaveTurrets[i];
-                    while (subset.IndexOf('-') > 0)
+                    string[] _subset = subOfSaveTurrets[i].Split('=');
+                    yards.Add(defaultstart);
+                    for (int x = 0; x < _subset.Length; x++)
                     {
-                        tempArr[iCount, 0] = Convert.ToInt64(subset.Substring(0, subset.IndexOf('-')));
-                        subset.Remove(0, subset.IndexOf('-') + 1);
+                        string[] tempSub = _subset[x].Split('-');
+                        for(int y = 0; y<tempSub.Length; y++)
+                        {
+                            yards[i][x, y] = Convert.ToInt32(tempSub[y]);
+                        }
                     }
                 }
                 else
