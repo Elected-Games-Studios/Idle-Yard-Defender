@@ -67,12 +67,12 @@ public static class LocalSaveSystem
         tempLoad = Loadstr.Split('#');
         if (tempLoad.Length > 0)
         {
-            DataBaseManager.LoadSaveTurrets(tempLoad[0]);
+            //DataBaseManager.LastUpdate = Convert.ToDateTime(tempLoad[0]);
             //DataBaseManager.LoadSaveZombies(tempLoad[x]);
             //DataBaseManager.LoadSaveHouse(tempLoad[x]);
             DataBaseManager.cash = Convert.ToInt64(tempLoad[1]);
             DataBaseManager.crypto = Convert.ToInt64(tempLoad[2]);
-            DataBaseManager.LastUpdate = Convert.ToDateTime(tempLoad[3]);
+            DataBaseManager.LoadSaveTurrets(tempLoad[3]);
         }
     }
 

@@ -20,7 +20,7 @@ public class MiniGun : Turret
         Yard = SceneManager.GetActiveScene().name;
     }
 
-    public void Start()
+    public void Start() //for now we are handling a new turret based on gameobject.setactive but it will be when you pay for it with currency later. 
     {
         int intYard = Convert.ToInt32(Yard);
         int intLocation = Convert.ToInt32(Location);
@@ -36,6 +36,7 @@ public class MiniGun : Turret
         }
         else
         {
+            //turretstats is run if there is already a turret there then assign the stats
             LVL = (tempArr[0]);
             ROF = (tempArr[1]);
             STR = (tempArr[2]);
@@ -46,7 +47,7 @@ public class MiniGun : Turret
     public void Update() // SHOOT Weapon check based on a descending timer attached to update loop
     {
         timeToShoot -= Time.deltaTime;
-        if (targetingComputer.targetAquired == true && timeToShoot <= 0)
+        if (targetingComputer.targetAquired && timeToShoot <= 0)
             ShootWeapon();
     }
 
@@ -63,12 +64,13 @@ public class MiniGun : Turret
         //reset shoot timer, grab bullet frm pool, set pos&rot to shootpoint pos&rot, set particle lifetime, enable bullet, instnt mzlfx, passtarget, passdmg
         timeToShoot = .2f;
         var bullet = MinigunShotPool.Instance.Get();
+        //cache particle control so you only get it once.
         bullet.transform.position = shootPoint.transform.position;
         bullet.transform.rotation = shootPoint.transform.rotation;
-        bullet.GetComponent<ParticleControll>().lifetime = 4f;
+        bullet.GetComponent<ParticleControl>().lifetime = 4f;
         bullet.gameObject.SetActive(true);
-        bullet.GetComponent<ParticleControll>().SpawnMuzzlePrefab();
-        bullet.GetComponent<ParticleControll>().PassTarget(targetingComputer.Target);
-        bullet.GetComponent<ParticleControll>().passdamage(STR);
+        bullet.GetComponent<ParticleControl>().SpawnMuzzlePrefab();
+        bullet.GetComponent<ParticleControl>().PassTarget(targetingComputer.Target);
+        bullet.GetComponent<ParticleControl>().passdamage(STR);
     }
 }

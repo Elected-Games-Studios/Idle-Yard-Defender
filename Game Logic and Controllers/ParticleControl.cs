@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class ParticleControll : MonoBehaviour
+public class ParticleControl : MonoBehaviour
 {
 	public float speed;
 	protected long damage;

@@ -14,6 +14,7 @@ using UnityEngine.SocialPlatforms;
 public class PlayServices : MonoBehaviour
 {
     public static PlayServices Instance { get; private set; }
+    string GameDataToString() => LocalSaveSystem.SaveParse();
     const string SAVE_NAME = "IdleYardDefenders";
     bool isSaving;
     bool isCloudDataLoaded = false;
@@ -39,14 +40,11 @@ public class PlayServices : MonoBehaviour
         SignIn();
         //GetComponent<AdManager>().Indestructable();
     }
-
-    string GameDataToString() => LocalSaveSystem.SaveParse();
-
-    private void SignIn()
+    
+    private void SignIn() // attempt login to google or default to local, load data.
     {
         Social.localUser.Authenticate((bool success) =>
         {
-            LoadData();
             if (success)
             {
                 Debug.Log("Google Sign-In has succeeded");
@@ -55,6 +53,7 @@ public class PlayServices : MonoBehaviour
             {
                 Debug.Log("Google Sign-In Failed");
             }
+            LoadData();
         });
     }
 

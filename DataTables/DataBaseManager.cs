@@ -268,7 +268,6 @@ public static class DataBaseManager
     public static List<int> YardPrestigeList = new List<int> { };//The Prestige of each individual yard.
     public static void LoadSaveTurrets(string SaveDataString)
     {
-        
         bool catchFound = false;
         string[] subOfSaveTurrets = SaveDataString.Split('|');
         for (int i = 0; i > subOfSaveTurrets.Length; i++)
@@ -304,7 +303,7 @@ public static class DataBaseManager
     }
     public static string SaveSenderTurrets()
     {
-        int temp = yards.Count;
+        //int temp = yards.Count;
         string Save = "";
         for (int i = 0; i < yards.Count; i++)
         {
@@ -321,10 +320,10 @@ public static class DataBaseManager
             Save += "|";
             Debug.Log((""+Save));
         }
-        for (int i = 0; i < YardPrestigeList.Count(); i++)
+        for (int i = 0; i < YardPrestigeList.Count; i++)
         {
             Save += Convert.ToString(YardPrestigeList[i]);
-            if ((i + 1) < YardPrestigeList.Count()) Save += ",";
+            if ((i + 1) < YardPrestigeList.Count) Save += ",";
         }
         //Save += Convert.ToString(YardPrestigeList);
         return Save;
@@ -333,7 +332,7 @@ public static class DataBaseManager
     {
         if (yards.Count == 0)
         {
-            YardPrestigeList.Add(0); // 
+            YardPrestigeList.Add(0);
             //starts the default game and the first turret
             yards.Add(defaultstart);
             Int64[,] currentyard = yards[0];
@@ -354,7 +353,7 @@ public static class DataBaseManager
             yards[yards.Count] = currentyard;
         }
     }
-    public static void HandleTurretLoad()
+    public static void HandleTurretLoad() //runs the stats you assigned against the differentials the turret should has based on it's location
     {
         howManyYards = yards.Count;
         for (int i = 0; i < howManyYards; i++)
@@ -368,7 +367,7 @@ public static class DataBaseManager
             }
         }
     }
-    public static List<Int64> TurretStats(int yard, int location)
+    public static List<Int64> TurretStats(int yard, int location) //call this to assign stats to a turret on turret awake.
     {
         Int64[,] currentyard = yards[yard];
         List<Int64> templist = new List<Int64>();
@@ -378,9 +377,8 @@ public static class DataBaseManager
         templist.Add(currentyard[location, 3]);
         return (templist);
     }
-    public static List<Int64> HandLeNewTurret(int yard, int location)
+    public static List<Int64> HandLeNewTurret(int yard, int location) //takes the yard that you are building a turret and places a level one
     {
-        //takes the yard that you are building a turret and places a level one
         Int64[,] currentyard = yards[yard];
         currentyard[location, 0] = 1;
         //add currency drop =
