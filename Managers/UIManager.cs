@@ -10,7 +10,6 @@ public class UIManager : MonoBehaviour
     public Text text;
     public void Awake()
     {
-        DataBaseManager.Starter();
         text = uiCanavs.GetComponent<Text>();
     }
     public void Update()

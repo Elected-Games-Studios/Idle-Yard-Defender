@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         int intYard = Convert.ToInt32(currentYard);
         DontDestroyOnLoad(this.gameObject);
         PlayServices.Instance.LoadData(); // needs to happen for next line to work, coroutine?
+        DataBaseManager.Starter();
         TurnOnActiveTurrets(DataBaseManager.activeTurretNum(intYard));
     }
 
@@ -51,7 +52,6 @@ public class GameManager : MonoBehaviour
             }
         }
     } // didn't get the list in order, serialized through unity to solve
-
     
     public void CheckTurretNum(int activeTurretNum) //this is to be called from a button 
     {
@@ -59,15 +59,7 @@ public class GameManager : MonoBehaviour
         DataBaseManager.activeTurretNum(intYard);
         Debug.Log("Number of Active turrets = " + activeTurretNum);
     }
-    public void AddTurret()
-    {
-        var buttonName = gameObject.name;
-        //activates turret
-        //GameObject.SetActive(GameObject.Find("buttonName"));
-        //saves 
-        //deactivates button
-    }
-    
+
     private void TurnOnActiveTurrets(int activeTurretNum) //hardcoded quick solution, delete later.
     {
         Debug.Log("Number of Active turrets = " + activeTurretNum);
